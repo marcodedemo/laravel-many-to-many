@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use App\Models\Technology;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -32,8 +33,9 @@ class ProjectController extends Controller
     {
 
         $types = Type::all();
+        $technologies = Technology::all();
 
-        return view('admin/projects/create', compact('types'));
+        return view('admin/projects/create', compact('types', 'technologies'));
         
     }
 
@@ -63,6 +65,11 @@ class ProjectController extends Controller
 
         $newProject->save();
 
+        if(array_key_exists('technologies',$formData)) {
+
+            $newProject->technologies()->attach($formData['technologies']);
+        }
+
         return redirect()->route('admin.projects.show', $newProject->slug);
     }
 
@@ -88,8 +95,9 @@ class ProjectController extends Controller
     {
 
         $types = Type::all();
+        $technologies = Technology::all();
 
-        return view('admin/projects/edit', compact('project', 'types'));
+        return view('admin/projects/edit', compact('project', 'types', 'technologies'));
     }
 
     /**
@@ -108,6 +116,14 @@ class ProjectController extends Controller
         $project->update($formData);
 
         $project->save();
+
+        if(array_key_exists('technologies',$formData)) {
+
+            $project->technologies()->sync($formData['technologies']);
+        } else {
+
+            $project->technologies()->detach();
+        }
 
         return redirect()->route('admin.projects.show', $project->slug);
     }
@@ -134,18 +150,12 @@ class ProjectController extends Controller
             'title' => 'required|unique:projects,title,'. $projectId,
             'description' => 'required',
             'link' => 'required',
-            'language' => 'required|max:50',
-            'framework' => 'required|max:50',
             'execution_date' => 'required',
             'type_id' => 'nullable|exists:types,id'
         ], [
             'title.required' => 'Insert a title',
             'title.unique' => 'Title already taken, please insert an alternative value',
             'description.required' => 'Insert a description',
-            'language.required' => 'Insert a language',
-            'language.required' => 'The language field can have a maximum of 50 characters',
-            'framework.required' => 'Insert a framework',
-            'framework.max' => 'The framework field can have a maximum of 50 characters',
             'execution_date.required' => 'Insert an execution date',
             'type_id.exists' => 'Insert an existing category value',
 

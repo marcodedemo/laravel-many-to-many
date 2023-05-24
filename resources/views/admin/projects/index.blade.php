@@ -31,62 +31,49 @@
                     
                     <div class="card-text">
                         <ul class="d-flex flex-column gap-1">
-                            <li>
-                                <strong>Languages: </strong>
-                                
+
+                            <li><strong>Technologies: </strong>
+
                                 <div class="logo-container d-flex gap-2 py-1">
-                                    
-                                    
-                                    @if (str_contains(strtolower($project['language']), "html"))
+                                    @if (str_contains(strtolower($project->technologies), "html"))
                                     <div class="logo"><img src="{{Vite::asset('resources/img/logos/html.png')}}" alt="html5 logo"></div>
                                     @endif
                                     
-                                    @if (str_contains(strtolower($project['language']), "css"))
+                                    @if (str_contains(strtolower($project->technologies), "css"))
                                     <div class="logo"><img src="{{Vite::asset('resources/img/logos/css.png')}}" alt="css3 logo"></div>
                                     @endif
                                     
-                                    @if (str_contains(strtolower($project['language']), "js"))
+                                    @if (str_contains(strtolower($project->technologies), "js"))
                                     <div class="logo"><img src="{{Vite::asset('resources/img/logos/js.png')}}" alt="js logo"></div>
                                     @endif
                                     
-                                    @if (str_contains(strtolower($project['language']), "php"))
+                                    @if (str_contains(strtolower($project->technologies), "php"))
                                     <div class="logo"><img src="{{Vite::asset('resources/img/logos/php.png')}}" alt="php logo"></div>
                                     @endif
-                                    
-                                    
-                                    
-                                    
-                                </div>
-                            </li>
-                            
-                            <li><strong>Frameworks: </strong>
-                                
-                                <div class="logo-container d-flex gap-2 py-1">
-                                    
-                                    @if (str_contains(strtolower($project['framework']), "vue"))
+
+                                    @if (str_contains(strtolower($project->technologies), "vue"))
                                     <div class="logo"><img src="{{Vite::asset('resources/img/logos/vue.png')}}" alt="Vuejs logo"></div>
                                     @endif
                                     
-                                    @if (str_contains(strtolower($project['framework']), "vite"))
+                                    @if (str_contains(strtolower($project->technologies), "vite"))
                                     <div class="logo"><img src="{{Vite::asset('resources/img/logos/vite.png')}}" alt="Vite logo"></div>
                                     @endif
                                     
-                                    @if (str_contains(strtolower($project['framework']), "bootstrap"))
+                                    @if (str_contains(strtolower($project->technologies), "bootstrap"))
                                     <div class="logo"><img src="{{Vite::asset('resources/img/logos/bootstrap.png')}}" alt="bootstrap logo"></div>
                                     @endif
                                     
-                                    @if (str_contains(strtolower($project['framework']), "mysql"))
+                                    @if (str_contains(strtolower($project->technologies), "mysql"))
                                     <div class="logo"><img src="{{Vite::asset('resources/img/logos/sql.png')}}" alt="MySQL logo"></div>
                                     @endif
                                     
-                                    @if (str_contains(strtolower($project['framework']), "laravel"))
+                                    @if (str_contains(strtolower($project->technologies), "laravel"))
                                     <div class="logo"><img src="{{Vite::asset('resources/img/logos/laravel.png')}}" alt="Laravel logo"></div>
                                     @endif
-                                    
                                 </div>
-                                
-                            </li>
                             
+                            </li>
+                        
                             <li><strong>Execution Date: </strong> {{date("d/m/Y", strtotime($project['execution_date']))}}</li>
                             <li><strong>Description: </strong> {{$project['description']}}</li>
                             

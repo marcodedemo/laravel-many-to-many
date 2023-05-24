@@ -10,7 +10,7 @@
     @csrf
     
     <div class="mb-3">
-      <label for="title">Title</label>
+      <label class="fw-bold" for="title">Title</label>
       <input class="form-control @error('title') is-invalid @enderror" type="text" id="title" name="title" value="{{old('title')}}">
       
       @error('title')
@@ -22,7 +22,7 @@
     </div>
 
     <div class="mb-3">
-      <label for="type_id">Project Type</label>
+      <label class="fw-bold" for="type_id">Project Type</label>
       <select name="type_id" id="type_id" class="form-select @error('type_id') is-invalid @enderror">
 
         <option value="">None</option>
@@ -38,9 +38,24 @@
         </div>
       @enderror
     </div>
+
+    <div class="mb-3">
+      <h6 class="fw-bold">Technologies</h6>
+
+      <div id="check-container" class="d-flex align-items-baseline gap-3">
+
+        @foreach($technologies as $technology)
+        <div>
+          <input type="checkbox" id="technology-{{$technology->id}}" name="technologies[]" value="{{$technology->id}}">
+          <label for="technology-{{$technology->id}}">{{$technology->name}}</label>
+        </div>
+        @endforeach
+        
+      </div>
+    </div>
     
     <div class="mb-3">
-      <label for="description">Description</label>
+      <label class="fw-bold" for="description">Description</label>
       <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description">{{old('description')}}</textarea>
       
       @error('description')
@@ -52,7 +67,7 @@
     </div>
     
     <div class="mb-3">
-      <label for="link">Github Link</label>
+      <label class="fw-bold" for="link">Github Link</label>
       <input class="form-control @error('link') is-invalid @enderror" type="text" id="link" name="link" value="{{old('link')}}">
       
       @error('link')
@@ -64,31 +79,7 @@
     </div>
     
     <div class="mb-3">
-      <label for="language">Languages</label>
-      <input class="form-control @error('language') is-invalid @enderror" type="text" id="language" name="language" value="{{old('language')}}">
-      
-      @error('language')
-      <div class="invalid-feedback">
-        {{$message}}
-      </div>
-      @enderror
-      
-    </div>
-    
-    <div class="mb-3">
-      <label for="framework">Frameworks</label>
-      <input class="form-control @error('framework') is-invalid @enderror" type="text" id="framework" name="framework" value="{{old('framework')}}">
-      
-      @error('framework')
-      <div class="invalid-feedback">
-        {{$message}}
-      </div>
-      @enderror
-      
-    </div>
-    
-    <div class="mb-3">
-      <label for="execution_date">Execution Date</label>
+      <label class="fw-bold" for="execution_date">Execution Date</label>
       <input class="form-control @error('execution_date') is-invalid @enderror" type="text" id="execution_date" name="execution_date" value="{{old('execution_date')}}">
       
       @error('execution_date')
