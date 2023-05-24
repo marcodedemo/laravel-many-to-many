@@ -53,6 +53,10 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{url('/admin/types') }}">{{ __('Types') }}</a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{url('/admin/technologies') }}">{{ __('Technologies') }}</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

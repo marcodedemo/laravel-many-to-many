@@ -64,7 +64,7 @@
                                     @endif
                                     
                                     @if (str_contains(strtolower($project->technologies), "mysql"))
-                                    <div class="logo"><img src="{{Vite::asset('resources/img/logos/sql.png')}}" alt="MySQL logo"></div>
+                                    <div class="logo"><img src="{{Vite::asset('resources/img/logos/mysql.png')}}" alt="MySQL logo"></div>
                                     @endif
                                     
                                     @if (str_contains(strtolower($project->technologies), "laravel"))

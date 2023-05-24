@@ -5,14 +5,21 @@
 
 <div class="container py-5">
 
-    <h1>{{$type->name}}</h1>
-    <hr>
-    <span>{{$type->description}}</span>
+    <div id="title" class="d-flex gap-3">
+
+        <div class="title-logo">
+            <img src="{{Vite::asset('resources/img/logos/'. $technology->slug . '.png')}}" alt="">
+        </div>
+
+        <h1>{{$technology->name}}</h1>
+    </div>
+
     <hr>
 
-    <h3>Projects: {{count($type->projects)}}</h3>
+
+    <h3>Projects: {{count($technology->projects)}}</h3>
     <div id="projects-container" class="container d-flex flex-wrap gap-3 mt-4">
-        @foreach ($type->projects as $project)
+        @foreach ($technology->projects as $project)
     
         
             <div class="card" style="width: 18rem;">
@@ -95,11 +102,11 @@
     <div id="buttons" class="d-flex flex-column gap-3 py-5">
 
         
-        <div id="type-edit">
-            <a href="{{route('admin.types.edit', $type->slug )}}" ><button class="btn btn-primary">Edit Type</button></a>
+        <div id="technology-edit">
+            <a href="{{route('admin.technologies.edit', $technology->slug )}}" ><button class="btn btn-primary">Edit Technology</button></a>
         </div>
 
-        <div id="type-delete">
+        <div id="technology-delete">
 
             
             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete Type</button>
@@ -115,12 +122,12 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            Do you want to permanently delete the type?
+                            Do you want to permanently delete this Technology?
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             
-                            <form action="{{route('admin.types.destroy', $type->slug)}}" method="POST">
+                            <form action="{{route('admin.technologies.destroy', $technology->slug)}}" method="POST">
                                 
                                 @csrf
                                 @method('DELETE')

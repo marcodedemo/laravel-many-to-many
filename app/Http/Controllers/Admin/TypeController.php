@@ -71,9 +71,8 @@ class TypeController extends Controller
      */
     public function show(Type $type)
     {
-        $projects = Project::all();
 
-        return view('admin/types/show', compact('type', 'projects'));
+        return view('admin/types/show', compact('type'));
         
     }
 
