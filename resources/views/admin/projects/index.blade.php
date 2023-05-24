@@ -34,7 +34,7 @@
 
                             <li><strong>Technologies: </strong>
 
-                                <div class="logo-container d-flex gap-2 py-1">
+                                <div class="logo-container d-flex flex-wrap gap-2 py-1">
                                     @if (str_contains(strtolower($project->technologies), "html"))
                                     <div class="logo"><img src="{{Vite::asset('resources/img/logos/html.png')}}" alt="html5 logo"></div>
                                     @endif
