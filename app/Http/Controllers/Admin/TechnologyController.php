@@ -88,6 +88,8 @@ class TechnologyController extends Controller
     {
         $formData = $request->all();
 
+        $technology->slug = Str::slug($formData['name'], '-');
+
         $technology->update($formData);
 
         $technology->save();

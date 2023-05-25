@@ -100,6 +100,8 @@ class TypeController extends Controller
 
         $formData = $request->all();
 
+        $type->slug = Str::slug($formData['name'], '-');
+
         $type->update($formData);
 
         $type->save();
