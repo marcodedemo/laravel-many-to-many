@@ -46,7 +46,7 @@
 
         @foreach($technologies as $technology)
         <div>
-          <input type="checkbox" id="technology-{{$technology->id}}" name="technologies[]" value="{{$technology->id}}">
+          <input type="checkbox" id="technology-{{$technology->id}}" name="technologies[]" value="{{$technology->id}}" @checked(in_array($technology->id, old('technologies', [])))>
           <label for="technology-{{$technology->id}}">{{$technology->name}}</label>
         </div>
         @endforeach

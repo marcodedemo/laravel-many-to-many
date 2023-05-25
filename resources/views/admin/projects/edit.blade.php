@@ -47,7 +47,13 @@
 
           @foreach($technologies as $technology)
           <div>
+            
+            @if ($errors->any())
+            <input type="checkbox" id="tech-{{$technology->id}}" name="technologies[]" value="{{$technology->id}}" @checked(in_array($technology->id, old('technologies', [])))>
+            @else
             <input type="checkbox" id="tech-{{$technology->id}}" name="technologies[]" value="{{$technology->id}}" @checked($project->technologies->contains($technology))>
+            @endif
+
             <label for="tech-{{$technology->id}}">{{$technology->name}}</label>
           </div>
           @endforeach
