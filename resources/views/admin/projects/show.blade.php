@@ -7,6 +7,13 @@
     <h1>{{$project->title}}</h1>
     <h4 class="text-secondary fst-italic">{{$project->type->name ?? ''}}</h4>
     <hr>
+    
+    @if($project->cover_image)
+        <h3>Project Image:</h3>
+        <div class="img-container py-4">
+            <img src="{{ asset('storage/' . $project->cover_image) }}" alt="">
+        </div>
+    @endif
 
     <div id="info" class="d-flex flex-column gap-3">
 

@@ -7,6 +7,7 @@ use App\Models\Project;
 use App\Models\Technology;
 use App\Models\Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -61,6 +62,13 @@ class ProjectController extends Controller
 
         $newProject = new Project();
 
+        if($request->hasFile('cover_image')) {
+            
+            $path = Storage::put('post_images', $request->cover_image);
+            
+            $formData['cover_image'] = $path;
+        }
+
         $newProject->fill($formData);
 
         $newProject->save();
@@ -113,6 +121,19 @@ class ProjectController extends Controller
 
         $formData = $request->all();
 
+        if($request->hasFile('cover_image')) {
+
+            if($project->cover_image) {
+
+                Storage::delete($project->cover_image);
+            }
+
+            $path = Storage::put('post_images', $request->cover_image);
+
+            $formData['cover_image'] = $path;
+
+        }
+
         $project->slug = Str::slug($formData['title'], '-');
 
         $project->update($formData);
@@ -138,6 +159,12 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+
+        if($project->cover_image) {
+            
+            Storage::delete($project->cover_image);
+        }
+
         $project->delete();
 
         return redirect()->route('admin.projects.index');
