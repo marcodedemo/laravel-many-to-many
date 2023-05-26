@@ -170,7 +170,6 @@ class ProjectController extends Controller
     public function filter(Request $request) {
         
         $searchTerm = $request['search'];
-
         
         $projects = Project::where(function ($query) use ($searchTerm) {
             
@@ -178,7 +177,7 @@ class ProjectController extends Controller
             ->orWhere('description', 'LIKE', '%' . $searchTerm . '%')
             ->orWhere('link', 'LIKE', '%' . $searchTerm . '%')
             ->orWhere('execution_date', 'LIKE', '%' . $searchTerm . '%')
-            ->orWhere('type_id', 'LIKE', '%' . $searchTerm . '%');
+            ->orWhere('slug', 'LIKE', '%' . $searchTerm . '%');
             
         })->get();
         
