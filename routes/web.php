@@ -41,10 +41,14 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
 
     // projects
     Route::resource('projects', ProjectController::class)->parameters(['projects' => 'project:slug']);
+    
+    Route::get('projects.filter', [ProjectController::class, 'filter'])->name('filter');
+
 
     // types
     Route::resource('types', TypeController::class)->parameters(['types' => 'type:slug']);
 
+    // technologies
     Route::resource('technologies', TechnologyController::class)->parameters(['technologies' => 'technology:slug']);
 
     // dashboard

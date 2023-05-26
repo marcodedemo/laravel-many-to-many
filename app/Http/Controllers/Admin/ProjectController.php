@@ -165,4 +165,28 @@ class ProjectController extends Controller
     
         return $validator;
     }
+
+
+    public function filter(Request $request) {
+        
+        $searchTerm = $request['search'];
+
+        
+        $projects = Project::where(function ($query) use ($searchTerm) {
+            
+            $query->where('title', 'LIKE', '%' . $searchTerm . '%')
+            ->orWhere('description', 'LIKE', '%' . $searchTerm . '%')
+            ->orWhere('link', 'LIKE', '%' . $searchTerm . '%')
+            ->orWhere('execution_date', 'LIKE', '%' . $searchTerm . '%')
+            ->orWhere('type_id', 'LIKE', '%' . $searchTerm . '%');
+            
+        })->get();
+        
+        if($projects->isEmpty()){
+            
+            $projects = Project::all();
+        }
+
+        return  view('admin.projects.index', compact('projects'));
+    }
 }

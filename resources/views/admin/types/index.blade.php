@@ -4,7 +4,16 @@
 @section('content')
 
 
-<div class="container py-5">
+<div class="jumbotron p-3 mb-4 bg-light rounded-3">
+  <div class="container py-3">
+
+      <h1 class="display-5 fw-bold">
+          Type List
+      </h1>
+  </div>
+</div>
+
+<div class="container py-3">
     
     <table class="table text-center">
         <thead>

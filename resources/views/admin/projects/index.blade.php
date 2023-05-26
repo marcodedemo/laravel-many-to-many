@@ -5,12 +5,21 @@
 
 
 <div class="jumbotron p-3 mb-4 bg-light rounded-3">
-    <div class="container py-5">
+    <div class="container py-3">
 
         <h1 class="display-5 fw-bold">
             Lista Progetti 
         </h1>
     </div>
+</div>
+
+<div class="search container">
+    
+    <form action="{{route('admin.filter')}}" class="d-flex" role="search" method="GET">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
+        <button class="btn btn-primary" type="submit">Search</button>
+    </form>
+
 </div>
 
 <div class="container d-flex flex-wrap gap-3 mt-5">
