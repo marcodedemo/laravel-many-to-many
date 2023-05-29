@@ -64,7 +64,7 @@ class ProjectController extends Controller
 
         if($request->hasFile('cover_image')) {
             
-            $path = Storage::put('post_images', $request->cover_image);
+            $path = Storage::put('project_images', $request->cover_image);
             
             $formData['cover_image'] = $path;
         }
@@ -128,7 +128,7 @@ class ProjectController extends Controller
                 Storage::delete($project->cover_image);
             }
 
-            $path = Storage::put('post_images', $request->cover_image);
+            $path = Storage::put('project_images', $request->cover_image);
 
             $formData['cover_image'] = $path;
 
@@ -180,13 +180,17 @@ class ProjectController extends Controller
             'description' => 'required',
             'link' => 'required',
             'execution_date' => 'required',
-            'type_id' => 'nullable|exists:types,id'
+            'type_id' => 'nullable|exists:types,id',
+            'cover_image' => 'nullable|image|max:8192',
+
         ], [
             'title.required' => 'Insert a title',
             'title.unique' => 'Title already taken, please insert an alternative value',
             'description.required' => 'Insert a description',
             'execution_date.required' => 'Insert an execution date',
             'type_id.exists' => 'Insert an existing category value',
+            'cover_image.max' => "The uploaded image weighs too much",
+            'cover_image.image' => "The file must be of type image",
 
         ])->validate();
     
